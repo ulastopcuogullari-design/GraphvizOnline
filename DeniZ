@@ -1,0 +1,48 @@
+graph TD
+    subgraph Sürücü Girdisi
+        SIMI[Direksiyon Simidi]
+    end
+    
+    subgraph Güç Aktarımı
+        MIL[Direksiyon Mili (M20 Gijon/Rulmanlı)]
+        KOL[Pitman Kolu (Direksiyon Mili Altına Sıkıca Sabitlenmiş Ahşap)]
+    end
+    
+    subgraph Ön Düzen (Mafsal ve Bağlantı)
+        CUBK[Çekme Çubuğu (Drag Link - 8mm Demir)]
+        RKOL[Rot Kolu (Tie Rod - 10mm Demir)]
+        MAFSAL_L[Sol Mafsal Bloğu - M16 Kingpin]
+        MAFSAL_R[Sağ Mafsal Bloğu - M16 Kingpin]
+        SAKS[Sabit Ön Aks Kirişi (50cm - 40x85mm)]
+    end
+
+    subgraph Tekerlekler
+        TEKER_L(Sol Ön Tekerlek)
+        TEKER_R(Sağ Ön Tekerlek)
+    end
+
+    SIMI --> MIL
+    MIL --> KOL
+    
+    % Hareket İletimi
+    KOL --> CUBK
+    CUBK --> RKOL
+    
+    % Ön Düzen Bağlantısı
+    RKOL --> MAFSAL_L
+    RKOL --> MAFSAL_R
+    
+    % Hareket Sonucu
+    MAFSAL_L --> TEKER_L
+    MAFSAL_R --> TEKER_R
+    
+    % Sabit Destekler
+    SAKS -- Mafsal Desteği --> MAFSAL_L
+    SAKS -- Mafsal Desteği --> MAFSAL_R
+    
+    style SAKS fill:#D68910,stroke:#333
+    style KOL fill:#F9E79F,stroke:#333
+    style RKOL fill:#9B59B6,stroke:#333
+    style CUBK fill:#9B59B6,stroke:#333
+    style MAFSAL_L fill:#D68910
+    style MAFSAL_R fill:#D68910
